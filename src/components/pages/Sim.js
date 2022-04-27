@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import "../styles/Sim.css";
 
+import { API } from "aws-amplify";
+
+const myAPI = "playerTestAPI";
+const path = "/player";
+
 let minute;
 let second;
 
@@ -45,6 +50,8 @@ function Sim() {
   const [speed, setSpeed] = useState(1000);
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
+  const [input, setInput] = useState("");
+  const [players, setPlayers] = useState([]);
 
   //when user presses play/pause/next period
   function updateClockRun() {
@@ -200,6 +207,19 @@ function Sim() {
     return messageClass;
   }
 
+  function getPlayer(e) {
+    console.log(e.input);
+    let playerId = e.input;
+    API.get(myAPI, path + "/" + playerId)
+      .then((response) => {
+        console.log("hi" + response);
+        setPlayers([response]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <body>
       <h1>Sim Page</h1>
@@ -210,6 +230,26 @@ function Sim() {
       <button class="button" onClick={updateSpeed}>
         {speedText}
       </button>
+      <div>
+        <input
+          placeholder="player id"
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+      </div>
+      <button class="button" onClick={() => getPlayer({ input })}>
+        generate
+      </button>
+      {players.map((thisPlayer, index) => {
+        return (
+          <div key={thisPlayer.playerId}>
+            <span>
+              <b>CustomerId:</b> {thisPlayer.playerId}
+            </span>
+          </div>
+        );
+      })}
       <div class="scoreboard">
         <div class="scoreboard_time">
           {minute}:{second} {periodText}

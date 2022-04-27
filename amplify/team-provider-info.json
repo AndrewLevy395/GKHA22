@@ -1,0 +1,29 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-gkha22react-dev-200856-authRole",
+            "UnauthRoleArn": "arn:aws:iam::931659011951:role/amplify-gkha22react-dev-200856-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::931659011951:role/amplify-gkha22react-dev-200856-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-gkha22react-dev-200856-deployment",
+            "UnauthRoleName": "amplify-gkha22react-dev-200856-unauthRole",
+            "StackName": "amplify-gkha22react-dev-200856",
+            "StackId": "arn:aws:cloudformation:us-east-1:931659011951:stack/amplify-gkha22react-dev-200856/3bb2e280-c5be-11ec-bd5a-0e7f77e9b327",
+            "AmplifyAppId": "dfz4hesbd1jbk"
+        },
+        "categories": {
+            "function": {
+                "playerHandler": {
+                    "deploymentBucketName": "amplify-gkha22react-dev-200856-deployment",
+                    "s3Key": "amplify-builds/playerHandler-41515150364e72447756-build.zip"
+                }
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "dfz4hesbd1jbk",
+                    "type": "cicd"
+                }
+            }
+        }
+    }
+}
