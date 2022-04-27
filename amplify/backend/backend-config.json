@@ -28,5 +28,13 @@
       "type": "cicd",
       "lastPushTimeStamp": "2022-04-27T01:09:13.516Z"
     }
+  },
+  "storage": {
+    "playersData": {
+      "service": "DynamoDB",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }

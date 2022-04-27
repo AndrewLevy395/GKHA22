@@ -208,11 +208,10 @@ function Sim() {
   }
 
   function getPlayer(e) {
-    console.log(e.input);
     let playerId = e.input;
+    console.log(e.input);
     API.get(myAPI, path + "/" + playerId)
       .then((response) => {
-        console.log("hi" + response);
         setPlayers([response]);
       })
       .catch((error) => {

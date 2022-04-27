@@ -1,6 +1,6 @@
 [
   {
-    "Action": [],
-    "Resource": []
+    "Action": ["dynamodb:GetItem"],
+    "Resource": ["arn:aws:dynamodb:us-east-1:931659011951:table/playersData"]
   }
 ]
