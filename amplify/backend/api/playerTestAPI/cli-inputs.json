@@ -5,7 +5,10 @@
       "name": "/player/{playerId}",
       "lambdaFunction": "playerHandler",
       "permissions": {
-        "setting": "open"
+        "setting": "private",
+        "auth": [
+          "read"
+        ]
       }
     }
   }

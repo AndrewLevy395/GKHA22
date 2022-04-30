@@ -1,38 +1,81 @@
-.App {
+html {
+  background-color: rgba(0, 0, 0, 0.96);
+}
+
+body {
+  color: rgba(245, 245, 245, 0.787);
+}
+
+h1 {
+  color: rgba(245, 245, 245, 0.923);
+  margin: 20px;
+}
+
+h2 {
+  color: rgba(245, 245, 245, 0.923);
+  margin: 20px;
+}
+
+.scoreboard{
+  width: 400px;
+  font-family: 'Quicksand', sans-serif
+}
+
+.scoreboard_time {
+  font-size: 2em
+}
+
+.scoreboard_teams {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) ;
+}
+
+.scoreboard {
+  padding: 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.scoreboard_name {
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+  font-size: 2em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.scoreboard_name--home {
+  color: #610095
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.scoreboard_name--away {
+  color: #05cd37
+}
+
+.scoreboard_score {
+  font-size: 2em
+}
+
+.goal_text {
+  color: #05cd37
+}
+
+.noti_text {
+  color: #efd50f
+}
+
+.button {
+  background-color: #06a52e;
+  text-align: center;
   color: white;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+  height: 50px;
+  display: inline-block;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button:hover {
+  text-shadow: 0 0 2em rgba(255,255,255,1);
+  background-color: #0b5c20;
+  color: rgb(218, 213, 213);
 }

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/createuser": {
+      "name": "/createuser",
+      "lambdaFunction": "createuser",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

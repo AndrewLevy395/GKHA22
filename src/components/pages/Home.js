@@ -9,12 +9,16 @@ const Home = () => {
       <br />
       <ul>
         <li>
-          {/* Endpoint to route to Home component */}
-          <Link to="/">Home</Link>
+          {/* Endpoint to route to About component */}
+          <Link to="/sim">Sim</Link>
         </li>
         <li>
           {/* Endpoint to route to About component */}
-          <Link to="/sim">Sim</Link>
+          <Link to="/franchise_new">New Franchise</Link>
+        </li>
+        <li>
+          {/* Endpoint to route to About component */}
+          <Link to="/franchise_load">Load Franchise</Link>
         </li>
       </ul>
     </div>

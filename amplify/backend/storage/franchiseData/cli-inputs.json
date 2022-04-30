@@ -1,0 +1,10 @@
+{
+  "resourceName": "franchiseData",
+  "tableName": "franchiseData",
+  "partitionKey": {
+    "fieldName": "username",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

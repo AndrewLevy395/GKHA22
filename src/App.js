@@ -7,7 +7,9 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Sim from "./components/pages/Sim";
+import Sim from "./components/pages/simnow/Sim";
+import FranchiseLoad from "./components/pages/franchise/FranchiseLoad";
+import FranchiseNew from "./components/pages/franchise/FranchiseNew";
 import Home from "./components/pages/Home";
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/sim" element={<Sim />} />
+        <Route path="/franchise_load" element={<FranchiseLoad />} />
+        <Route path="/franchise_new" element={<FranchiseNew />} />
         <Route path="/" element={<Navigate replace to="/home" />} />
       </Routes>
     </Router>

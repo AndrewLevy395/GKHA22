@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import "../styles/Sim.css";
+// import { API } from "aws-amplify";
 
-import { API } from "aws-amplify";
-
-const myAPI = "playerTestAPI";
-const path = "/player";
+// const myAPI = "playerTestAPI";
+// const path = "/player"
 
 let minute;
 let second;
 
-let home_team = "Hippos";
-let away_team = "GSquad";
-const home_goal_messages = [
-  home_team + " goal scored by Forward",
-  home_team + " goal scored by Forward",
-  home_team + " goal scored by Goalie",
+let homeTeam = "Hippos";
+let awayTeam = "GSquad";
+const homeGoalMessages = [
+  homeTeam + " goal scored by Forward",
+  homeTeam + " goal scored by Forward",
+  homeTeam + " goal scored by Goalie",
 ];
-const away_goal_messages = [
-  away_team + " goal scored by Forward",
-  away_team + " goal scored by Forward",
-  away_team + " goal scored by Goalie",
+const awayGoalMessages = [
+  awayTeam + " goal scored by Forward",
+  awayTeam + " goal scored by Forward",
+  awayTeam + " goal scored by Goalie",
 ];
-const shot_messages = [
-  home_team + " shot on goal by Forward",
-  away_team + " shot on goal by Forward",
-  home_team + " shot on goal by Forward",
-  away_team + " shot on goal by Forward",
-  home_team + " shot on goal by Goalie",
-  away_team + " shot on goal by Goalie",
-  home_team + " shot missed by Forward",
-  away_team + " shot missed by Forward",
-  home_team + " shot missed by Forward",
-  away_team + " shot missed by Forward",
-  home_team + " shot missed by Goalie",
-  away_team + " shot missed by Goalie",
+const shotMessages = [
+  homeTeam + " shot on goal by Forward",
+  awayTeam + " shot on goal by Forward",
+  homeTeam + " shot on goal by Forward",
+  awayTeam + " shot on goal by Forward",
+  homeTeam + " shot on goal by Goalie",
+  awayTeam + " shot on goal by Goalie",
+  homeTeam + " shot missed by Forward",
+  awayTeam + " shot missed by Forward",
+  homeTeam + " shot missed by Forward",
+  awayTeam + " shot missed by Forward",
+  homeTeam + " shot missed by Goalie",
+  awayTeam + " shot missed by Goalie",
 ];
 
 function Sim() {
@@ -42,32 +41,32 @@ function Sim() {
   const [count, setCount] = useState(300);
   const [period, setPeriod] = useState(1);
   const [periodText, setPeriodText] = useState("1st");
-  const [clock_running, setClock] = useState(false);
-  const [period_end, setPeriodEnd] = useState(false);
+  const [clockRunning, setClock] = useState(false);
+  const [periodEnd, setPeriodEnd] = useState(false);
   const [buttonText, setText] = useState("Play");
   const [listItems, addToPlayList] = useState([]);
   const [eventChance, changeEventChance] = useState(5);
   const [speed, setSpeed] = useState(1000);
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
-  const [input, setInput] = useState("");
-  const [players, setPlayers] = useState([]);
+  // const [input, setInput] = useState("");
+  // const [players, setPlayers] = useState([]);
 
   //when user presses play/pause/next period
   function updateClockRun() {
     if (period < 3) {
-      if (period_end) {
+      if (periodEnd) {
         setPeriodEnd(false);
         setPeriod((per) => per + 1);
         setCount(300);
         setText("Pause");
       }
-      if (clock_running) {
+      if (clockRunning) {
         setText("Play");
       } else {
         setText("Pause");
       }
-      setClock(!clock_running);
+      setClock(!clockRunning);
     }
   }
 
@@ -96,7 +95,7 @@ function Sim() {
   //clock timing and events
   useEffect(() => {
     let interval = null;
-    if (clock_running) {
+    if (clockRunning) {
       interval = setInterval(() => {
         if (period === 2) {
           setPeriodText("2nd");
@@ -119,21 +118,21 @@ function Sim() {
         }
         changeEventChance(Math.floor(Math.random() * 300));
         if (eventChance < 20) {
-          let message_value =
-            shot_messages[Math.floor(Math.random() * shot_messages.length)] +
+          let messageValue =
+            shotMessages[Math.floor(Math.random() * shotMessages.length)] +
             " | " +
             minute +
             ":" +
             second +
             " " +
             periodText;
-          addToPlayList((arr) => [message_value, ...arr]);
+          addToPlayList((arr) => [messageValue, ...arr]);
         }
         if (eventChance === 31) {
           updateScore("home");
-          let message_value =
-            home_goal_messages[
-              Math.floor(Math.random() * home_goal_messages.length)
+          let messageValue =
+            homeGoalMessages[
+              Math.floor(Math.random() * homeGoalMessages.length)
             ] +
             " | " +
             minute +
@@ -141,13 +140,13 @@ function Sim() {
             second +
             " " +
             periodText;
-          addToPlayList((arr) => [message_value, ...arr]);
+          addToPlayList((arr) => [messageValue, ...arr]);
         }
         if (eventChance === 32) {
           updateScore("away");
-          let message_value =
-            away_goal_messages[
-              Math.floor(Math.random() * away_goal_messages.length)
+          let messageValue =
+            awayGoalMessages[
+              Math.floor(Math.random() * awayGoalMessages.length)
             ] +
             " | " +
             minute +
@@ -155,7 +154,7 @@ function Sim() {
             second +
             " " +
             periodText;
-          addToPlayList((arr) => [message_value, ...arr]);
+          addToPlayList((arr) => [messageValue, ...arr]);
         }
         if (count <= 1) {
           if (period < 3) {
@@ -171,7 +170,7 @@ function Sim() {
           }
         }
       }, speed);
-    } else if (!clock_running) {
+    } else if (!clockRunning) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
@@ -197,7 +196,7 @@ function Sim() {
   minute = Math.floor(count / 60);
   second = ("0" + (count % 60)).slice(-2);
 
-  function message_to_class(e) {
+  function messageToClass(e) {
     let messageClass = "shot_text";
     if (e.includes("goal scored")) {
       messageClass = "goal_text";
@@ -207,17 +206,17 @@ function Sim() {
     return messageClass;
   }
 
-  function getPlayer(e) {
-    let playerId = e.input;
-    console.log(e.input);
-    API.get(myAPI, path + "/" + playerId)
-      .then((response) => {
-        setPlayers([response]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // function getPlayer(e) {
+  //   let playerId = e.input;
+  //   console.log(e.input);
+  //   API.get(myAPI, path + "/" + playerId)
+  //     .then((response) => {
+  //       setPlayers([response]);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   return (
     <body>
@@ -229,7 +228,7 @@ function Sim() {
       <button class="button" onClick={updateSpeed}>
         {speedText}
       </button>
-      <div>
+      {/* <div>
         <input
           placeholder="player id"
           type="text"
@@ -244,28 +243,31 @@ function Sim() {
         return (
           <div key={thisPlayer.playerId}>
             <span>
-              <b>CustomerId:</b> {thisPlayer.playerId}
+              <b>PlayerId:</b> {thisPlayer.playerId}
             </span>
           </div>
         );
-      })}
+      })} */}
       <div class="scoreboard">
         <div class="scoreboard_time">
           {minute}:{second} {periodText}
         </div>
         <div class="scoreboard_teams">
-          <div class="scoreboard_name scoreboard_name--away">{away_team}</div>
-          <div class="scoreboard_name scoreboard_name--home">{home_team}</div>
+          <div class="scoreboard_name scoreboard_name--away">{awayTeam}</div>
+          <div class="scoreboard_name scoreboard_name--home">{homeTeam}</div>
           <div class="scoreboard_score scoreboard_score--home">{awayScore}</div>
           <div class="scoreboard_score scoreboard_score--away">{homeScore}</div>
           <div class="scoreboard_control"></div>
         </div>
         <div class="play_by_play">
           {listItems.map((e) => (
-            <div class={message_to_class(e)}>{e}</div>
+            <div class={messageToClass(e)}>{e}</div>
           ))}
         </div>
       </div>
+      <Link to="/home">
+        <button class="button">Back!</button>
+      </Link>
     </body>
   );
 }

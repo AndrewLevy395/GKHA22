@@ -9,13 +9,18 @@
       "UnauthRoleName": "amplify-gkha22react-dev-200856-unauthRole",
       "StackName": "amplify-gkha22react-dev-200856",
       "StackId": "arn:aws:cloudformation:us-east-1:931659011951:stack/amplify-gkha22react-dev-200856/3bb2e280-c5be-11ec-bd5a-0e7f77e9b327",
-      "AmplifyAppId": "dfz4hesbd1jbk"
+      "AmplifyAppId": "dfz4hesbd1jbk",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-gkha22react-dev-200856-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "function": {
         "playerHandler": {
           "deploymentBucketName": "amplify-gkha22react-dev-200856-deployment",
           "s3Key": "amplify-builds/playerHandler-64664d3872483645592f-build.zip"
+        },
+        "createuser": {
+          "deploymentBucketName": "amplify-gkha22react-dev-200856-deployment",
+          "s3Key": "amplify-builds/createuser-4a417a6a42552f2f6652-build.zip"
         }
       },
       "hosting": {
@@ -32,6 +37,9 @@
           "partitionKeyName": "playerId",
           "partitionKeyType": "S"
         }
+      },
+      "auth": {
+        "undefined": {}
       }
     }
   },
