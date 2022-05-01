@@ -3,39 +3,40 @@ import { Link, Navigate } from "react-router-dom";
 
 import "../../styles/franchise/FranchiseNew.css";
 
-// import { API } from "aws-amplify";
+import { API } from "aws-amplify";
 
-const BUILD_ENV = process.env.REACT_APP_USER_BRANCH;
-
-const myAPI = "franchiseData-" + BUILD_ENV;
-// const path = "/player";
+const myAPI = "franchiseEvents";
+const path = "/createuser";
 
 function FranchiseNew() {
-  console.log(BUILD_ENV);
   //set variables
   const [userName, setUserName] = useState("Bob");
   const [userTeam, setUserTeam] = useState("Alaskan Thunder");
+  const [message, setMessage] = useState("");
   const [validUser, setValidUser] = useState(false);
 
   function createUser() {
-    // API.post(myAPI, path + "/" + playerId);
-    //     .then((response) => {
-    //       setPlayers([response]);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-  }
-
-  function checkUser() {
-    if (userName) {
-      createUser();
-      setValidUser(true);
-    }
+    API.post(myAPI, path, { body: { username: userName, team: userTeam } })
+      .then((response) => {
+        if (response.message) {
+          setMessage("Coach Name Already Exists");
+        } else {
+          setValidUser(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
     <body>
+      {validUser && (
+        <Navigate
+          to="/franchise_menu"
+          state={{ userName: userName }}
+        ></Navigate>
+      )}
       <h1>Franchise Create</h1>
       <form>
         <p>
@@ -63,11 +64,11 @@ function FranchiseNew() {
           <option value="Southside Spartans">Southside Spartans</option>
         </select>
         <br />
-        <button type="button" onClick={checkUser}>
+        <button type="button" onClick={createUser}>
           Create
         </button>
+        <p>{message}</p>
       </form>
-      {validUser && <Navigate to="/home"></Navigate>}
       <Link to="/home">
         <button class="button">Back!</button>
       </Link>
