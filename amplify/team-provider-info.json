@@ -20,7 +20,11 @@
         },
         "createuser": {
           "deploymentBucketName": "amplify-gkha22react-dev-200856-deployment",
-          "s3Key": "amplify-builds/createuser-4a417a6a42552f2f6652-build.zip"
+          "s3Key": "amplify-builds/createuser-42674d69577754463946-build.zip"
+        },
+        "loaduser": {
+          "deploymentBucketName": "amplify-gkha22react-dev-200856-deployment",
+          "s3Key": "amplify-builds/loaduser-59547269383956583031-build.zip"
         }
       },
       "hosting": {

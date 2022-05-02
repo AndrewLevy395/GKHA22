@@ -20,6 +20,11 @@
           ]
         }
       ]
+    },
+    "loaduser": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "api": {
@@ -44,6 +49,14 @@
         {
           "category": "function",
           "resourceName": "createuser",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "loaduser",
           "attributes": [
             "Name",
             "Arn"

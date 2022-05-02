@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"8.0.2\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -15,18 +15,6 @@
     },
     "s3Key": {
       "Type": "String"
-    },
-    "storagefranchiseDataName": {
-      "Type": "String",
-      "Default": "storagefranchiseDataName"
-    },
-    "storagefranchiseDataArn": {
-      "Type": "String",
-      "Default": "storagefranchiseDataArn"
-    },
-    "storagefranchiseDataStreamArn": {
-      "Type": "String",
-      "Default": "storagefranchiseDataStreamArn"
     }
   },
   "Conditions": {
@@ -59,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "createuser",
+            "loaduser",
             {
               "Fn::Join": [
                 "",
                 [
-                  "createuser",
+                  "loaduser",
                   "-",
                   {
                     "Ref": "env"
@@ -81,15 +69,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "STORAGE_FRANCHISEDATA_NAME": {
-              "Ref": "storagefranchiseDataName"
-            },
-            "STORAGE_FRANCHISEDATA_ARN": {
-              "Ref": "storagefranchiseDataArn"
-            },
-            "STORAGE_FRANCHISEDATA_STREAMARN": {
-              "Ref": "storagefranchiseDataStreamArn"
             }
           }
         },
@@ -110,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "gkha22reactLambdaRolef1e83422",
+            "gkha22reactLambdaRole16ccc35d",
             {
               "Fn::Join": [
                 "",
                 [
-                  "gkha22reactLambdaRolef1e83422",
+                  "gkha22reactLambdaRole16ccc35d",
                   "-",
                   {
                     "Ref": "env"
@@ -186,57 +165,6 @@
         }
       }
     },
-    "AmplifyResourcesPolicy": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storagefranchiseDataArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagefranchiseDataArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
     "CustomLambdaExecutionPolicy": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
@@ -250,8 +178,7 @@
                 "dynamodb:PutItem"
               ],
               "Resource": [
-                "arn:aws:dynamodb:us-east-1:931659011951:table/franchiseData-dev",
-                "arn:aws:dynamodb:us-east-1:931659011951:table/franchiseTeamsData-dev"
+                "arn:aws:dynamodb:us-east-1:931659011951:table/franchiseData-dev"
               ],
               "Effect": "Allow"
             }

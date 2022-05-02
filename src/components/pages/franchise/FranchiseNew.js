@@ -5,8 +5,8 @@ import "../../styles/franchise/FranchiseNew.css";
 
 import { API } from "aws-amplify";
 
-const myAPI = "franchiseEvents";
-const path = "/createuser";
+const createAPI = "franchiseEvents";
+const createPath = "/createuser";
 
 function FranchiseNew() {
   //set variables
@@ -16,7 +16,9 @@ function FranchiseNew() {
   const [validUser, setValidUser] = useState(false);
 
   function createUser() {
-    API.post(myAPI, path, { body: { username: userName, team: userTeam } })
+    API.post(createAPI, createPath, {
+      body: { username: userName, team: userTeam },
+    })
       .then((response) => {
         if (response.message) {
           setMessage("Coach Name Already Exists");
